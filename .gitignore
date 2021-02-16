@@ -1,0 +1,6 @@
+.bsp
+.idea
+%LOCALAPPDATA%
+target
+project/target
+*.impl
