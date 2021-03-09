@@ -13,7 +13,7 @@ object TotalAmountSpentByCustomerDataSet extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
 
   // Case Class (Similar to DTO)
-  case class CustomerOrders(cust_id: Int, item_id: Int, amount_spent: Double)
+  case class CustomerOrders(cust_id: Int, amount_spent: Double)
 
   //Create Spark Session
   val spark = SparkSession.builder()
@@ -24,7 +24,7 @@ object TotalAmountSpentByCustomerDataSet extends App {
   // Schema
   val customerOrderSchema = new StructType()
     .add("cust_id", IntegerType, nullable = true)
-    .add("item_id", IntegerType, nullable = true)
+    //.add("item_id", IntegerType, nullable = true)
     .add("amount_spent", DoubleType, nullable = true)
 
   import spark.implicits._
