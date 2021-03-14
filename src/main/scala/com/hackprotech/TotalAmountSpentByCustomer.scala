@@ -6,13 +6,8 @@ import org.apache.spark.SparkContext
 /**
  * Total Amount Spend by the Customer
  */
-object TotalAmountSpentByCustomer extends Serializable {
+object TotalAmountSpentByCustomer {
 
-
-  def splitCustomerDetails(line: String) = {
-    val rowData = line.split(",")
-    (rowData(0).toInt, rowData(2).toFloat)
-  }
 
   def main(args: Array[String]): Unit = {
     Logger.getLogger("org").setLevel(Level.ERROR)
@@ -22,10 +17,12 @@ object TotalAmountSpentByCustomer extends Serializable {
     // Read the Csv File
     val customerDetails = sc.textFile("src/test/resources/customer-orders.csv")
 
-    //  val extractedCustomerDetails = customerDetails.map(x => {
-    //    val line = x.split(",")
-    //    (line(0).toInt, line(2).toFloat)
-    //  })
+
+    val splitCustomerDetails = (line: String) => {
+      val rowData = line.split(",")
+      (rowData(0).toInt, rowData(2).toFloat)
+    }
+
 
     val extractedCustomerDetails = customerDetails.map(splitCustomerDetails)
 
