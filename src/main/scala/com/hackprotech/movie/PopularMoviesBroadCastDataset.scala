@@ -56,11 +56,11 @@ object PopularMoviesBroadCastDataset extends App {
   val moviesCount = moviesList.groupBy("movieId").count()
 
   // UDF for movie name fetch based on movie id
-  //  val movieName: Int => String = (movieId: Int) => {
-  //    movieDetailsBC.value(movieId)
-  //  }
-  //
-  //  val movieLookUpUDF = udf(movieName)
+  val movieName: Int => String = (movieId: Int) => {
+    movieDetailsBC.value(movieId)
+  }
+
+  val movieLookUpUDF = udf(movieName)
 
   val movieBroadCast = movieDetailsBC.value;
 
